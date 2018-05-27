@@ -1,0 +1,84 @@
+import os
+import time
+import serial
+from Tkinter import *
+
+def operate1():
+	arduinoData.write('0')
+	arduinoData.close()
+	control_window.destroy()
+	os.system("python device1.py")
+
+def operate2():
+	arduinoData.write('0')
+	arduinoData.close()
+	control_window.destroy()
+	os.system("python device2.py")
+
+def operate3():
+	arduinoData.write('0')
+	arduinoData.close()
+	control_window.destroy()
+	os.system("python device3.py")
+
+def operate4():
+	arduinoData.write('0')
+	arduinoData.close()
+	control_window.destroy()
+	os.system("python device4.py")
+
+def exitall():
+	arduinoData.write('0')
+	arduinoData.close()
+	control_window.destroy()
+
+control_window=Tk()
+
+arduinoData = serial.Serial('com5',9600)
+
+lab0=Label(text="To operate various devices")
+lab1=Label(text="do click on respective choise")
+lab2=Label(text="				")
+lab3=Label(text="				")
+lab4=Label(text="				")
+lab5=Label(text="				")
+lab6=Label(text="				")
+
+btn1=Button(control_window,text='operate Device 1',command=operate1)
+btn2=Button(control_window,text='operate Device 2',command=operate2)
+btn3=Button(control_window,text='operate Device 3',command=operate3)
+btn4=Button(control_window,text='operate Device 4',command=operate4)
+btn5=Button(control_window,text='EXIT',command=exitall)
+
+lab0.pack()
+lab1.pack()
+lab2.pack()
+btn1.pack()
+lab3.pack()
+btn2.pack()
+lab4.pack()
+btn3.pack()
+lab5.pack()
+btn4.pack()
+lab6.pack()
+btn5.pack()
+
+w = 400 # width for the Tk root
+h = 300 # height for the Tk root
+
+# get screen width and height
+ws = control_window.winfo_screenwidth() # width of the screen
+hs = control_window.winfo_screenheight() # height of the screen
+
+# calculate x and y coordinates for the Tk root window
+x = (ws/2) - (w/2)
+y = (hs/2) - (h/2)
+
+# set the dimensions of the screen 
+# and where it is placed
+control_window.geometry('%dx%d+%d+%d' % (w, h, x, y))
+
+
+#control_window.geometry('{}x{}'.format(400, 300))
+control_window.title("Device Controller")
+control_window.mainloop()
